@@ -21,11 +21,11 @@ class MixinJavaSdkApplicationTests {
     @Test
     void testApp() throws InterruptedException {
         app.run(new TestGroupInfoImpl(),1);
-        while(true){
+        /**while(true){
             synchronized(lock){
                 // 除非有线程唤醒他 lock.notify();
                 lock.wait();
             }
-        }
+        }*/
     }
 }

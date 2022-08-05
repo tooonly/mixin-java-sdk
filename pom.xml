@@ -199,7 +199,7 @@
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
                             <additionalparam>-Xdoclint:none</additionalparam>
-                            <javadocExecutable>/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/bin/javadoc</javadocExecutable>
+                            <javadocExecutable>/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/bin/javadoc</javadocExecutable>
                             <!-- TODO 临时解决不规范的javadoc生成报错,后面要规范化后把这行去掉 -->
                         </configuration>
                         <executions>
