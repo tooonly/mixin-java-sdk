@@ -8,11 +8,13 @@
 ### 此SDK提供的是接口方法，大群功能我也单独写了个SDK，大群SDK依赖此SDK，充分考虑了解耦性。
 ### 如果有需要用户授权、用户管理等功能的应用，也可以引入此SDK，SDK代码清晰明了，API文档正在编辑中，请稍等。
 ### 目前已上传Maven仓库，pom引入 
-``<dependency>
+``
+<dependency>
   <groupId>com.tooonly</groupId>
   <artifactId>mixin-java-sdk</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <type>war</type>
-</dependency>``
+</dependency>
+``
 即可
 #### 有问题请提issues，我看到会第一时间解答，对你有帮助请多多Star，感谢！！！
