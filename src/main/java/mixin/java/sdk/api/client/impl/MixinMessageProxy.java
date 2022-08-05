@@ -10,6 +10,7 @@ import mixin.java.sdk.util.Category;
 import okhttp3.WebSocket;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
