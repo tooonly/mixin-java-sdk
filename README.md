@@ -12,8 +12,7 @@
 <dependency>
   <groupId>com.tooonly</groupId>
   <artifactId>mixin-java-sdk</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <type>war</type>
+  <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 即可
