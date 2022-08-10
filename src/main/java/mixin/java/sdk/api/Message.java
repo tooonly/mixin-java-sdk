@@ -32,7 +32,9 @@ public class Message {
     public static void sendText(WebSocket webSocket,Msg msg){
         JsonObject params = new JsonObject();
         params.addProperty("conversation_id",msg.getConversation_id());
-        params.addProperty("recipient_id",msg.getRecipient_id());
+        if(StringUtils.isNotBlank(msg.getRecipient_id())){
+            params.addProperty("recipient_id",msg.getRecipient_id());
+        }
         params.addProperty("message_id",msg.getMessage_id());
         params.addProperty("category",msg.getCategory());
         if(StringUtils.isNotBlank(msg.getRepresentative_id())){
@@ -107,8 +109,7 @@ public class Message {
         String recall_msg_id = Conversation.UniqueConversationId("2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3","6928d13d-b138-4903-9356-9097722e7186");
         msg.setMessage_id(recall_msg_id);
         msg.setConversation_id("58c200f9-4b29-357d-b605-8e664bccda59");
-        msg.setCategory("MESSAGE_RECALL");
-        msg.setRecipient_id("2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3");
+        msg.setCategory("CREATE_MESSAGE");
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("message_id",recall_msg_id);
         msg.setData(jsonObject.toString());

@@ -14,6 +14,8 @@ public interface Constant {
 
     String readConversations = "/conversations/%s";
 
+    String updateGroup = "/conversations/%s";
+
     String sendMessages = "/messages";
 
     String acknowledgements = "/acknowledgements";

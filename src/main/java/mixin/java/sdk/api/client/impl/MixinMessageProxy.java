@@ -2,6 +2,7 @@ package mixin.java.sdk.api.client.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import mixin.java.sdk.api.Message;
 import mixin.java.sdk.api.client.MessageProxy;
 import mixin.java.sdk.api.client.MixinBot;
 import mixin.java.sdk.entity.Msg;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
+import java.util.UUID;
 
 @Component
 public class MixinMessageProxy implements MessageProxy {
@@ -53,25 +55,27 @@ public class MixinMessageProxy implements MessageProxy {
                         /**
                          * 需要将消息及所有转发的消息都进行撤回
                          */
-                        mixinBot.recallMessage(msg);
+                        mixinBot.recallMessage(webSocket,msg,groupId);
                         break;
                     case UNKNOWN:
                         logger.warn("category unknown!!!"+category);
                         break;
                     default:
-                        /**
+
                         //List<Msg> msgs = userService.getMsgs();
-                        Msg callbackMsg = new Msg();
+                        /**Msg callbackMsg = new Msg();
                         callbackMsg.setMessage_id(UUID.randomUUID().toString());
                         callbackMsg.setConversation_id(msg.getConversation_id());
                         callbackMsg.setCategory(Category.PLAIN_TEXT.toString());
                         callbackMsg.setData("你的消息已收到!!!");
                         callbackMsg.setRecipient_id(msg.getUser_id());
-                        Message.sendMessage(groupId,callbackMsg);
-                        Message.sendMessageAck(webSocket,data.get("message_id").getAsString());
+                        Message.sendText(webSocket,callbackMsg);
+                        Message.sendMessageAck(webSocket,data.get("message_id").getAsString());*/
+
+                        mixinBot.receiveMessage(webSocket,msg,groupId);
                         break;
-                     */
-                        mixinBot.receiveMessage(msg);
+
+
 
                 }
             case ACKNOWLEDGE_MESSAGE_RECEIPT:

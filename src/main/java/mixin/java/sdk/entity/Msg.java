@@ -36,6 +36,9 @@ public class Msg {
 
     private String updated_at;
 
+    //原始消息ID
+    private String original_message_id;
+
     public Msg() {
     }
 
@@ -135,6 +138,14 @@ public class Msg {
         this.updated_at = updated_at;
     }
 
+    public String getOriginal_message_id() {
+        return original_message_id;
+    }
+
+    public void setOriginal_message_id(String original_message_id) {
+        this.original_message_id = original_message_id;
+    }
+
     @Override
     public String toString() {
         return "Msg{" +
@@ -150,6 +161,7 @@ public class Msg {
                 ", data_base64='" + data_base64 + '\'' +
                 ", created_at='" + created_at + '\'' +
                 ", updated_at='" + updated_at + '\'' +
+                ", original_message_id='" + original_message_id + '\'' +
                 '}';
     }
 }

@@ -4,7 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import mixin.java.sdk.algorithm.JWToken;
 import mixin.java.sdk.algorithm.MD5;
+import mixin.java.sdk.api.client.impl.TestGroupInfoImpl;
 import mixin.java.sdk.util.Config;
 import mixin.java.sdk.util.MixinHttpUtil;
 
@@ -73,9 +75,29 @@ public class Conversation {
         }
     }
 
+    public static JsonObject updateGroup(long groupId,String conversationId,JsonObject jsonObject){
+        try {
+            String uri = Constant.updateGroup;
+            uri = String.format(uri, conversationId);
+            String result = MixinHttpUtil.post(groupId,uri,jsonObject.toString());
+            JsonParser parser = new JsonParser();
+            JsonElement jsonTree = parser.parse(result);
+            System.out.println(jsonTree.getAsJsonObject());
+            return jsonTree.getAsJsonObject().get("data").getAsJsonObject();
+        }catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
+        JWToken.register(new TestGroupInfoImpl());
         //System.out.println(UniqueConversationId("631b3606-26e2-4440-b6e9-365af1d20b83",Config.keystore.getClient_id()));
-        System.out.println(contact(1,"GROUP","Mixin Java SDK","2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3","631b3606-26e2-4440-b6e9-365af1d20b83"));
+        //System.out.println(contact(1,"GROUP","Mixin Java SDK","2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3","631b3606-26e2-4440-b6e9-365af1d20b83"));
         //System.out.println(readConversation("631b3606-26e2-4440-b6e9-365af1d20b83"));
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name","好学图书馆");
+        jsonObject.addProperty("announcement","好学图书馆群聊功能即将上线，敬请期待!");
+        System.out.println(updateGroup(1,"631b3606-26e2-4440-b6e9-365af1d20b83",jsonObject));
     }
 }
