@@ -15,8 +15,7 @@ public class App {
     @Autowired
     private MixinWebsocketListener mixinWebsocketListener;
 
-    public void run(GroupInfo groupInfo,long groupId){
-        JWToken.register(groupInfo);
+    public void run(long groupId){
         mixinWebsocketListener.connectToRemoteMixin(groupId);
     }
 

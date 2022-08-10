@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tooonly</groupId>
     <artifactId>mixin-java-sdk</artifactId>
-    <version>1.0.2-Release</version>
+    <version>1.0.4-Release</version>
     <packaging>jar</packaging>
     <name>mixin-java-sdk</name>
     <description>Mixin Java Sdk</description>

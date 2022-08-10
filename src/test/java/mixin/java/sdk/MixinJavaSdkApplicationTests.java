@@ -1,5 +1,6 @@
 package mixin.java.sdk;
 
+import mixin.java.sdk.algorithm.JWToken;
 import mixin.java.sdk.api.client.impl.TestGroupInfoImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +21,8 @@ class MixinJavaSdkApplicationTests {
 
     @Test
     void testApp() throws InterruptedException {
-        app.run(new TestGroupInfoImpl(),1);
+        JWToken.register(new TestGroupInfoImpl());
+        app.run(1);
         /**while(true){
             synchronized(lock){
                 // 除非有线程唤醒他 lock.notify();
