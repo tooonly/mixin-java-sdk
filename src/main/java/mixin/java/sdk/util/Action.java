@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 public enum Action {
 
     CREATE_MESSAGE
-    ,MESSAGE_RECALL
     ,LIST_PENDING_MESSAGES
     ,ACKNOWLEDGE_MESSAGE_RECEIPT
     ,NOT_IMPLEMENTED_BY_THIS_SDK_YET;

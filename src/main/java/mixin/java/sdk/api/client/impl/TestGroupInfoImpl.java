@@ -18,6 +18,11 @@ public class TestGroupInfoImpl<T> implements GroupInfo {
     }
 
     @Override
+    public Object getGroup(long id) {
+        return null;
+    }
+
+    @Override
     public Keystore getKeyStore(long groupId) {
         return Config.keystore;
     }

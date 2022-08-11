@@ -7,5 +7,7 @@ public interface MixinBot {
 
     void receiveMessage(WebSocket webSocket,Msg msg,long groupId);
 
+    void receivePinMessage(WebSocket webSocket,Msg msg,long groupId);
+
     void recallMessage(WebSocket webSocket,Msg msg,long groupId);
 }

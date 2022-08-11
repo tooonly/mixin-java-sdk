@@ -12,6 +12,8 @@ public class Keystore {
 
     private String private_key;
 
+    private String client_secret;
+
     public String getPin() {
         return pin;
     }
@@ -52,4 +54,11 @@ public class Keystore {
         this.private_key = private_key;
     }
 
+    public String getClient_secret() {
+        return client_secret;
+    }
+
+    public void setClient_secret(String client_secret) {
+        this.client_secret = client_secret;
+    }
 }

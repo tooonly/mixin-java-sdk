@@ -57,6 +57,9 @@ public class MixinMessageProxy implements MessageProxy {
                          */
                         mixinBot.recallMessage(webSocket,msg,groupId);
                         break;
+                    case MESSAGE_PIN:
+                        mixinBot.receivePinMessage(webSocket,msg,groupId);
+                        break;
                     case UNKNOWN:
                         logger.warn("category unknown!!!"+category);
                         break;

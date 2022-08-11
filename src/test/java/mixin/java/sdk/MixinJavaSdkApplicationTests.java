@@ -19,15 +19,15 @@ class MixinJavaSdkApplicationTests {
     void contextLoads() {
     }
 
-    @Test
+    //@Test
     void testApp() throws InterruptedException {
         JWToken.register(new TestGroupInfoImpl());
         app.run(1);
-        /**while(true){
+        while(true){
             synchronized(lock){
                 // 除非有线程唤醒他 lock.notify();
                 lock.wait();
             }
-        }*/
+        }
     }
 }

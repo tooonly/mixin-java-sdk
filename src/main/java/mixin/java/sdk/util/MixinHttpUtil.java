@@ -3,6 +3,7 @@ package mixin.java.sdk.util;
 import com.google.gson.JsonObject;
 import mixin.java.sdk.algorithm.JWToken;
 import mixin.java.sdk.api.Constant;
+import mixin.java.sdk.entity.Keystore;
 import okhttp3.*;
 import okhttp3.Request.Builder;
 
@@ -74,12 +75,12 @@ public class MixinHttpUtil {
         }
     }
 
-    public static String post(String code) throws IOException {
+    public static String post(Keystore keystore, String code) throws IOException {
         String fullUrl = Constant.HTTP_URL_GLOBAL + Constant.authToken;
         JsonObject body = new JsonObject();
-        body.addProperty("client_id",Config.keystore.getClient_id());
+        body.addProperty("client_id",keystore.getClient_id());
         body.addProperty("code",code);
-        body.addProperty("client_secret",Config.client_secret);
+        body.addProperty("client_secret",keystore.getClient_secret());
         Builder builder = (new Builder()).url(fullUrl).post(RequestBody.create(JSON, body.toString()));
         Request request = builder.build();
         Response response = client.newCall(request).execute();

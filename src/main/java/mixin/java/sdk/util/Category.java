@@ -19,6 +19,7 @@ public enum Category{
     ,PLAIN_POST
     ,APP_BUTTON_GROUP
     ,SYSTEM_ACCOUNT_SNAPSHOT
+    ,MESSAGE_PIN
     ,UNKNOWN;
 
     Category(){}

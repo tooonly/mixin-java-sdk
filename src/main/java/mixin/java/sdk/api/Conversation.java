@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import mixin.java.sdk.algorithm.JWToken;
 import mixin.java.sdk.algorithm.MD5;
 import mixin.java.sdk.api.client.impl.TestGroupInfoImpl;
+import mixin.java.sdk.entity.Keystore;
 import mixin.java.sdk.util.Config;
 import mixin.java.sdk.util.MixinHttpUtil;
 
@@ -18,30 +19,31 @@ public class Conversation {
     public static String UniqueConversationId(String userId0,String userId1){
         String minId = userId0,maxId = userId1;
         if(userId0.compareTo(userId1) > 0){
-            maxId = userId1;
-            minId = userId0;
+            minId = userId1;
+            maxId = userId0;
         }
         String conversation = minId + maxId;
         conversation = MD5.getMD5Str(conversation);
         byte[] bytes = conversation.getBytes();
         bytes[6] = (byte) ((bytes[6] & 0x0f) | 0x30);
         bytes[8] = (byte) ((bytes[8] & 0x3f) | 0x80);
-        return UUID.nameUUIDFromBytes(bytes).toString();
+        return UUID.nameUUIDFromBytes(bytes).toString().toLowerCase();
     }
 
-    public static JsonObject contact(long groupId,String category,String name,String... userIds) {
+    public static JsonObject contact(long groupId, String client_id,String category, String name, String... userIds) {
         try{
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("category",category);
             String conversationId;
             if(userIds.length == 1){
-                conversationId = UniqueConversationId(userIds[0],Config.keystore.getClient_id());
+                conversationId = UniqueConversationId(userIds[0], client_id);
             }else{
                 conversationId = UUID.randomUUID().toString();
             }
-            jsonObject.addProperty("conversation_id",conversationId);
-            jsonObject.addProperty("name",name);
-            jsonObject.addProperty("creator_id","631b3606-26e2-4440-b6e9-365af1d20b83");
+            jsonObject.addProperty("conversation_id", conversationId);
+            if(userIds.length > 1){
+                jsonObject.addProperty("name",name);
+            }
             JsonArray jsonArray = new JsonArray();
             JsonObject user = new JsonObject();
             for(String userId:userIds){
@@ -95,9 +97,11 @@ public class Conversation {
         //System.out.println(UniqueConversationId("631b3606-26e2-4440-b6e9-365af1d20b83",Config.keystore.getClient_id()));
         //System.out.println(contact(1,"GROUP","Mixin Java SDK","2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3","631b3606-26e2-4440-b6e9-365af1d20b83"));
         //System.out.println(readConversation("631b3606-26e2-4440-b6e9-365af1d20b83"));
-        JsonObject jsonObject = new JsonObject();
+        /**JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("name","好学图书馆");
         jsonObject.addProperty("announcement","好学图书馆群聊功能即将上线，敬请期待!");
-        System.out.println(updateGroup(1,"631b3606-26e2-4440-b6e9-365af1d20b83",jsonObject));
+        System.out.println(updateGroup(1,"631b3606-26e2-4440-b6e9-365af1d20b83",jsonObject));*/
+        System.out.println(contact(1,"16793499-37e9-4547-8211-f2d3dbe4cd2f","CONTACT","","631b3606-26e2-4440-b6e9-365af1d20b83"));
+        //System.out.println(UniqueConversationId("16793499-37e9-4547-8211-f2d3dbe4cd2f","631b3606-26e2-4440-b6e9-365af1d20b83"));
     }
 }

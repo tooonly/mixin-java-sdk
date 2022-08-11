@@ -13,6 +13,11 @@ public class MixinBotTest implements MixinBot {
     }
 
     @Override
+    public void receivePinMessage(WebSocket webSocket, Msg msg, long groupId) {
+        System.out.println(msg);
+    }
+
+    @Override
     public void recallMessage(WebSocket webSocket,Msg msg,long groupId) {
         System.out.println(msg);
     }

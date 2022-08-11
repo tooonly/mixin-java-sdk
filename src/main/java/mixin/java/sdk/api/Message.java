@@ -2,11 +2,9 @@ package mixin.java.sdk.api;
 
 import com.google.gson.*;
 import mixin.java.sdk.algorithm.JWToken;
+import mixin.java.sdk.api.client.impl.TestGroupInfoImpl;
 import mixin.java.sdk.entity.Msg;
-import mixin.java.sdk.util.Action;
-import mixin.java.sdk.util.JsonUtil;
-import mixin.java.sdk.util.MessageCategory;
-import mixin.java.sdk.util.MixinHttpUtil;
+import mixin.java.sdk.util.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
@@ -71,11 +69,13 @@ public class Message {
                 params.addProperty("recipient_id",msg.getRecipient_id());
                 params.addProperty("message_id",msg.getMessage_id());
                 params.addProperty("category",msg.getCategory());
-                params.addProperty("representative_id",msg.getRepresentative_id());
-                params.addProperty("quote_message_id",msg.getQuote_message_id());
-                if(StringUtils.isNotBlank(msg.getData())){
-                    params.addProperty("data",toBase64(msg.getData()));
+                if(StringUtils.isNotBlank(msg.getRepresentative_id())){
+                    params.addProperty("representative_id",msg.getRepresentative_id());
                 }
+                if(StringUtils.isNotBlank(msg.getQuote_message_id())){
+                    params.addProperty("quote_message_id",msg.getQuote_message_id());
+                }
+                params.addProperty("data",toBase64(msg.getData()));
                 jsonArray.add(params);
             }
             String result = MixinHttpUtil.post(groupId,Constant.sendMessages, jsonArray.toString());
@@ -97,6 +97,7 @@ public class Message {
     }
 
     public static void main(String[] args) {
+        JWToken.register(new TestGroupInfoImpl());
         /**Msg msg = new Msg("58c200f9-4b29-357d-b605-8e664bccda59", "2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3",UUID.randomUUID().toString(),MessageCategory.PLAIN_TEXT.toString(),"机器人代发消息测试");
         msg.setRepresentative_id("631b3606-26e2-4440-b6e9-365af1d20b83");
         msg.setQuote_message_id("57b914d9-85fd-43b8-a74a-016e0cce236a");
@@ -105,15 +106,12 @@ public class Message {
         JsonObject jsonObject = sendMessage(msg);
         System.out.println(jsonObject);*/
         //System.out.println(new String(Base64.getUrlDecoder().decode("eyJtZXNzYWdlX2lkIjoiZDRhYTIwYjYtYTk4Ny00MjQ0LThkOWMtZmI1ZjNmM2Y3MTEyIn0=")));
-        Msg msg = new Msg();
-        String recall_msg_id = Conversation.UniqueConversationId("2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3","6928d13d-b138-4903-9356-9097722e7186");
-        msg.setMessage_id(recall_msg_id);
-        msg.setConversation_id("58c200f9-4b29-357d-b605-8e664bccda59");
-        msg.setCategory("CREATE_MESSAGE");
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("message_id",recall_msg_id);
-        msg.setData(jsonObject.toString());
-        //JsonObject result = sendMessage(1,msg);
-        //System.out.println(result);
+        Msg callbackMsg = new Msg();
+        callbackMsg.setMessage_id(UUID.randomUUID().toString());
+        callbackMsg.setConversation_id("0f4e2f99-fadf-3d62-90e9-51c74f2c08c1");
+        callbackMsg.setCategory(Category.PLAIN_TEXT.toString());
+        callbackMsg.setData("系统消息!!!");
+        callbackMsg.setRecipient_id("631b3606-26e2-4440-b6e9-365af1d20b83");
+        Message.sendMessage(1,callbackMsg);
     }
 }

@@ -8,5 +8,7 @@ public interface GroupInfo<T> {
 
     List<T> getGroups();
 
+    <T> T getGroup(long id);
+
     Keystore getKeyStore(long groupId);
 }

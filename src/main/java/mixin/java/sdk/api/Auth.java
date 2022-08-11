@@ -3,15 +3,16 @@ package mixin.java.sdk.api;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import mixin.java.sdk.entity.Keystore;
 import mixin.java.sdk.util.MixinHttpUtil;
 
 import java.io.IOException;
 
 public class Auth {
 
-    public static JsonObject auth(String code){
+    public static JsonObject auth(Keystore keystore,String code){
         try {
-            String result = MixinHttpUtil.post(code);
+            String result = MixinHttpUtil.post(keystore,code);
             JsonParser parser = new JsonParser();
             JsonElement jsonTree = parser.parse(result);
             JsonObject jsonObject = jsonTree.getAsJsonObject();
