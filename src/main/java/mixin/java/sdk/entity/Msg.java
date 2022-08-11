@@ -3,41 +3,41 @@ package mixin.java.sdk.entity;
 public class Msg {
 
     //会话ID
-    private String conversation_id;
+    private String conversation_id = "";
 
     //接收人ID
-    private String recipient_id;
+    private String recipient_id = "";
 
     //消息ID
-    private String message_id;
+    private String message_id = "";
 
     //消息类型
-    private String category;
+    private String category = "";
 
     //代发消息人ID
-    private String representative_id;
+    private String representative_id = "";
 
     //引用消息ID
-    private String quote_message_id;
+    private String quote_message_id = "";
 
     //消息内容
-    private String data;
+    private String data = "";
 
     //用户ID
-    private String user_id;
+    private String user_id = "";
 
     //会话ID
-    private String session_id;
+    private String session_id = "";
 
     //Base64消息内容
-    private String data_base64;
+    private String data_base64 = "";
 
-    private String created_at;
+    private String created_at = "";
 
-    private String updated_at;
+    private String updated_at = "";
 
     //原始消息ID
-    private String original_message_id;
+    private String original_message_id = "";
 
     public Msg() {
     }
