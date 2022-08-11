@@ -19,7 +19,7 @@ public enum Category{
     ,PLAIN_POST
     ,APP_BUTTON_GROUP
     ,SYSTEM_ACCOUNT_SNAPSHOT
-    ,MESSAGE_PIN
+    ,MESSAGE_PIN//置顶消息，data里的action为PIN时是置顶，为UNPIN时是取消置顶
     ,UNKNOWN;
 
     Category(){}
