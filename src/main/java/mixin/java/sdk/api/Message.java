@@ -95,23 +95,4 @@ public class Message {
         jsonObject.add("params",params);
         return jsonObject;
     }
-
-    public static void main(String[] args) {
-        JWToken.register(new TestGroupInfoImpl());
-        /**Msg msg = new Msg("58c200f9-4b29-357d-b605-8e664bccda59", "2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3",UUID.randomUUID().toString(),MessageCategory.PLAIN_TEXT.toString(),"机器人代发消息测试");
-        msg.setRepresentative_id("631b3606-26e2-4440-b6e9-365af1d20b83");
-        msg.setQuote_message_id("57b914d9-85fd-43b8-a74a-016e0cce236a");
-        //userId:2d8ef69d-4132-46d7-bfd8-36fe8db4ddb3 631b3606-26e2-4440-b6e9-365af1d20b83
-        //conversationId:58c200f9-4b29-357d-b605-8e664bccda59 242d5912-eb2a-32e5-b0a9-d762fabe3960
-        JsonObject jsonObject = sendMessage(msg);
-        System.out.println(jsonObject);*/
-        //System.out.println(new String(Base64.getUrlDecoder().decode("eyJtZXNzYWdlX2lkIjoiZDRhYTIwYjYtYTk4Ny00MjQ0LThkOWMtZmI1ZjNmM2Y3MTEyIn0=")));
-        Msg callbackMsg = new Msg();
-        callbackMsg.setMessage_id(UUID.randomUUID().toString());
-        callbackMsg.setConversation_id("0f4e2f99-fadf-3d62-90e9-51c74f2c08c1");
-        callbackMsg.setCategory(Category.PLAIN_TEXT.toString());
-        callbackMsg.setData("系统消息!!!");
-        callbackMsg.setRecipient_id("631b3606-26e2-4440-b6e9-365af1d20b83");
-        Message.sendMessage(1,callbackMsg);
-    }
 }
