@@ -20,20 +20,15 @@ public class JsonUtil {
     }
 
     private static class Gzip {
-        private Gzip() {
-        }
-
+        private Gzip() {}
         static byte[] gzipCompress(byte[] uncompressedData) {
             byte[] result = new byte[0];
-
             try {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(uncompressedData.length);
                 Throwable var3 = null;
-
                 try {
                     GZIPOutputStream gzipOS = new GZIPOutputStream(bos);
                     Throwable var5 = null;
-
                     try {
                         gzipOS.write(uncompressedData);
                         gzipOS.close();
@@ -53,7 +48,6 @@ public class JsonUtil {
                                 gzipOS.close();
                             }
                         }
-
                     }
                 } catch (Throwable var32) {
                     var3 = var32;
@@ -70,38 +64,30 @@ public class JsonUtil {
                             bos.close();
                         }
                     }
-
                 }
             } catch (IOException var34) {
                 var34.printStackTrace();
             }
-
             return result;
         }
 
         static byte[] gzipUncompress(byte[] compressedData) {
             byte[] result = new byte[0];
-
             try {
                 ByteArrayInputStream bis = new ByteArrayInputStream(compressedData);
                 Throwable var3 = null;
-
                 try {
                     ByteArrayOutputStream bos = new ByteArrayOutputStream();
                     Throwable var5 = null;
-
                     try {
                         GZIPInputStream gzipIS = new GZIPInputStream(bis);
                         Throwable var7 = null;
-
                         try {
                             byte[] buffer = new byte[1024];
-
                             int len;
                             while((len = gzipIS.read(buffer)) != -1) {
                                 bos.write(buffer, 0, len);
                             }
-
                             result = bos.toByteArray();
                         } catch (Throwable var55) {
                             var7 = var55;
@@ -118,7 +104,6 @@ public class JsonUtil {
                                     gzipIS.close();
                                 }
                             }
-
                         }
                     } catch (Throwable var57) {
                         var5 = var57;
@@ -135,7 +120,6 @@ public class JsonUtil {
                                 bos.close();
                             }
                         }
-
                     }
                 } catch (Throwable var59) {
                     var3 = var59;
@@ -152,12 +136,10 @@ public class JsonUtil {
                             bis.close();
                         }
                     }
-
                 }
             } catch (IOException var61) {
                 var61.printStackTrace();
             }
-
             return result;
         }
     }
