@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tooonly</groupId>
     <artifactId>mixin-java-sdk</artifactId>
-    <version>1.1.1-Release</version>
+    <version>1.2.0-Release</version>
     <packaging>jar</packaging>
     <name>mixin-java-sdk</name>
     <description>Mixin Java Sdk</description>
@@ -104,6 +104,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
