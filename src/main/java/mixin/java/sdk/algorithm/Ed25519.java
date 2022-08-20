@@ -14,7 +14,9 @@ import java.security.*;
 import java.util.Arrays;
 import java.util.Base64;
 
-
+/**
+ * Ed25519加密算法
+ */
 public class Ed25519 extends Algorithm {
 
     private Signature signature = null;

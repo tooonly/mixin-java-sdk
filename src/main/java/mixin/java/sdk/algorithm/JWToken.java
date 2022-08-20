@@ -18,6 +18,10 @@ public class JWToken {
         groupInfo = gInfo;
     }
 
+    public static GroupInfo getGroupInfo(){
+        return groupInfo;
+    }
+
     public static String getToken(long groupId,String uri, String body) {
         return getToken(groupId,"GET", uri, body);
     }

@@ -1,6 +1,12 @@
 package mixin.java.sdk.util;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import okio.ByteString;
+import okio.GzipSink;
+import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
+import org.apache.commons.compress.compressors.gzip.GzipUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -8,7 +14,7 @@ import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class JsonUtil {
+public abstract class JsonUtil<T> {
 
     public static String bytesToJsonStr(ByteString bytes) {
         return new String(Gzip.gzipUncompress(bytes.toByteArray()));
@@ -17,6 +23,18 @@ public class JsonUtil {
     public static ByteString jsonStrToByteString(String json) {
         byte[] bytes = Gzip.gzipCompress(json.getBytes());
         return ByteString.of(bytes, 0, bytes.length);
+    }
+
+    public static String toString(Object object){
+        JsonElement jsonElement = toJSON(object);
+        return jsonElement.getAsString();
+    }
+
+    public static JsonElement toJSON(Object object){
+        Gson gson = new Gson();
+        String json = gson.toJson(object);
+        JsonParser jsonParser = new JsonParser();
+        return jsonParser.parse(json);
     }
 
     private static class Gzip {

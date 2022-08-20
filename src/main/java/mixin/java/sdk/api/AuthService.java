@@ -8,8 +8,14 @@ import mixin.java.sdk.util.MixinHttpUtil;
 
 import java.io.IOException;
 
-public class Auth {
+public class AuthService {
 
+    /**
+     * 用户授权成功后，跳转至回调地址，回调地址拿着code调用该接口可以获取access_token等信息
+     * @param keystore
+     * @param code
+     * @return
+     */
     public static JsonObject auth(Keystore keystore,String code){
         try {
             String result = MixinHttpUtil.post(keystore,code);

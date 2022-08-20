@@ -36,7 +36,7 @@ public enum Category{
         } else {
             try {
                 return valueOf(value);
-            } catch (Exception var2) {
+            } catch (Exception e) {
                 return UNKNOWN;
             }
         }

@@ -10,30 +10,6 @@ public interface Constant {
 
     String Websocket_URL_GLOBAL = "wss://mixin-blaze.zeromesh.net";
 
-    String conversations = "/conversations";
-
-    String readConversations = "/conversations/%s";
-
-    String updateGroup = "/conversations/%s";
-
-    String sendMessages = "/messages";
-
-    String acknowledgements = "/acknowledgements";
-
-    String userRelation = "/relationships";
-
-    String attachments = "/attachments";
-
-    String getAttachments = "/attachments/%s";
-
     String authToken = "/oauth/token";
-
-    String me = "/me";
-
-    String readUser = "/users/%s";
-
-    String clientFavorite = "/apps/%s/favorite";
-
-    String userFavorite = "/users/%s/apps/favorite";
 
 }

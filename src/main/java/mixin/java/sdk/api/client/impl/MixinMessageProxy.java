@@ -2,7 +2,6 @@ package mixin.java.sdk.api.client.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import mixin.java.sdk.api.Message;
 import mixin.java.sdk.api.client.MessageProxy;
 import mixin.java.sdk.api.client.MixinBot;
 import mixin.java.sdk.entity.Msg;
@@ -11,13 +10,11 @@ import mixin.java.sdk.util.Category;
 import okhttp3.WebSocket;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
-import java.util.UUID;
 
 @Component
 public class MixinMessageProxy implements MessageProxy {

@@ -42,6 +42,25 @@ public class Msg {
     public Msg() {
     }
 
+    public Msg(String conversation_id, String recipient_id, String message_id, String category, String data) {
+        this.conversation_id = conversation_id;
+        this.recipient_id = recipient_id;
+        this.message_id = message_id;
+        this.category = category;
+        this.data = data;
+    }
+
+    public Msg(String conversation_id, String recipient_id, String message_id, String category,
+               String representative_id, String quote_message_id, String data) {
+        this.conversation_id = conversation_id;
+        this.recipient_id = recipient_id;
+        this.message_id = message_id;
+        this.category = category;
+        this.representative_id = representative_id;
+        this.quote_message_id = quote_message_id;
+        this.data = data;
+    }
+
     public String getConversation_id() {
         return conversation_id;
     }

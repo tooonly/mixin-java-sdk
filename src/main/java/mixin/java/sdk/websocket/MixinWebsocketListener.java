@@ -4,9 +4,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import mixin.java.sdk.algorithm.JWToken;
 import mixin.java.sdk.api.Constant;
-import mixin.java.sdk.api.Message;
+import mixin.java.sdk.api.MessageService;
 import mixin.java.sdk.api.client.MessageProxy;
-import mixin.java.sdk.api.client.impl.MixinMessageProxy;
 import mixin.java.sdk.util.JsonUtil;
 import okhttp3.*;
 import okio.ByteString;
@@ -55,7 +54,7 @@ public class MixinWebsocketListener extends WebSocketListener {
         this.isConnect = response.code() == 101;
 
         // Request unread messages
-        Message.sendListPendingMessages(webSocket);
+        MessageService.sendListPendingMessages(webSocket);
     }
 
     @Override

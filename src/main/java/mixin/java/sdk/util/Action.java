@@ -2,7 +2,7 @@ package mixin.java.sdk.util;
 
 import com.google.gson.JsonObject;
 
-public enum Action {
+public enum Action{
 
     CREATE_MESSAGE
     ,LIST_PENDING_MESSAGES
@@ -23,7 +23,7 @@ public enum Action {
         } else {
             try {
                 return valueOf(value);
-            } catch (Exception var2) {
+            } catch (Exception e) {
                 return NOT_IMPLEMENTED_BY_THIS_SDK_YET;
             }
         }
