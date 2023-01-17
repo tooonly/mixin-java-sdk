@@ -29,7 +29,7 @@ public class ApiUtils {
             JsonParser parser = new JsonParser();
             JsonElement jsonTree = parser.parse(result);
             System.out.println(jsonTree.getAsJsonObject());
-            return jsonTree.getAsJsonObject().get("data").getAsJsonObject();
+            return jsonTree.getAsJsonObject();
         } catch (IOException e) {
             e.printStackTrace();
         }

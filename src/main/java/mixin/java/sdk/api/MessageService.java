@@ -67,8 +67,9 @@ public class MessageService {
         msg.setMessage_id(UUID.randomUUID().toString());
         msg.setData("测试聊天功能");
         msg.setRecipient_id("9356ba67-2a2b-4833-812c-1a23f388521b");
-        msg.setConversation_id("e598bc50-56f9-42e1-af66-cc5d9f3c85e1");
-        msg.setRepresentative_id("");
+        msg.setConversation_id("8828158b-510a-36d5-b952-8ccfb9768b0c");
+        msg.setRepresentative_id("631b3606-26e2-4440-b6e9-365af1d20b83");
+        msg.setQuote_message_id(null);
         msg.setCategory(Category.PLAIN_TEXT.toString());
         JsonObject result = sendMessage(1,msg);
         System.out.println(result);

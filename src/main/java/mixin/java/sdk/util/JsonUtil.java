@@ -11,6 +11,8 @@ import org.apache.commons.compress.compressors.gzip.GzipUtils;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -160,5 +162,10 @@ public abstract class JsonUtil<T> {
             }
             return result;
         }
+    }
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        System.out.println(new String(Base64.getEncoder().encode("17de49d0f65f5a86898beb827de4cd8b316d3548".getBytes())));
+        System.out.println(new String(Base64.getDecoder().decode("wjkQwl8XRtPxrZxkkXmGClK3kJBclF16H09OL5iqvKM")));
     }
 }

@@ -37,6 +37,7 @@ public class UserService {
         JWToken.register(new TestGroupInfoImpl());
         //System.out.println(addUser(1,"16793499-37e9-4547-8211-f2d3dbe4cd2f","HL"));
         //System.out.println(clientFavorite(1,"1ab1f241-b809-4790-bcfd-a1779bb1d313"));
-        System.out.println(clientFavorite(1,"16793499-37e9-4547-8211-f2d3dbe4cd2f"));
+        //System.out.println(clientFavorite(1,"16793499-37e9-4547-8211-f2d3dbe4cd2f"));
+        System.out.println(readUser(1,"fbd26bc6-3d04-4964-a7fe-a540432b16e2"));
     }
 }

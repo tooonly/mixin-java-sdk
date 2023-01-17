@@ -55,13 +55,12 @@ public class ConversationService {
     public static void main(String[] args) {
         JWToken.register(new TestGroupInfoImpl());
         //System.out.println(UniqueConversationId("631b3606-26e2-4440-b6e9-365af1d20b83",Config.keystore.getClient_id()));
-        //System.out.println(contact(1,"GROUP","GROUP","测试","631b3606-26e2-4440-b6e9-365af1d20b83","9356ba67-2a2b-4833-812c-1a23f388521b"));
         //System.out.println(readConversation("631b3606-26e2-4440-b6e9-365af1d20b83"));
         /**JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("name","测试");
         jsonObject.addProperty("announcement","群聊功能即将上线，敬请期待!");
         System.out.println(updateGroup(1,"e598bc50-56f9-42e1-af66-cc5d9f3c85e1",jsonObject));*/
         //System.out.println(contact(1,"","9356ba67-2a2b-4833-812c-1a23f388521b"));
-        System.out.println(UniqueConversationId("631b3606-26e2-4440-b6e9-365af1d20b83","16793499-37e9-4547-8211-f2d3dbe4cd2f"));
+        //System.out.println(UniqueConversationId("9356ba67-2a2b-4833-812c-1a23f388521b","733ad02f-4bd9-4911-9dbe-1f3a0d5a3fd2"));
     }
 }

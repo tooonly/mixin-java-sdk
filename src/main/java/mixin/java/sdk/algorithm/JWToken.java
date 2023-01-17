@@ -54,4 +54,8 @@ public class JWToken {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println(JWToken.genSig("GET","/friends",""));
+    }
+
 }
