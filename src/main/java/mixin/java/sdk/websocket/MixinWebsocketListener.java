@@ -95,8 +95,8 @@ public class MixinWebsocketListener extends WebSocketListener {
         System.out.println("throwable: " + t);
         t.printStackTrace();
         System.out.println("response: " + response);
-        isConnect = false;
-        reconnect();
+        //isConnect = false;
+        //reconnect();
     }
 
     /**
