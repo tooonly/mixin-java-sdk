@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
+import java.util.concurrent.TimeUnit;
 
 @Component
 @Scope("prototype")
@@ -35,12 +36,19 @@ public class MixinWebsocketListener extends WebSocketListener {
 
     private final static int MILLIS = 5000;     // 重连间隔时间，毫秒
 
-    private OkHttpClient client;
+    private static OkHttpClient client;
+
+    static {
+        client = new OkHttpClient()
+                .newBuilder()
+                .connectionPool(
+                        new ConnectionPool(100,1, TimeUnit.SECONDS)
+                ).build();
+    }
 
     public WebSocket connectToRemoteMixin(long groupId) {
         this.groupId = groupId;
         String token = JWToken.getToken(this.groupId,"/", "");
-        this.client = (new OkHttpClient.Builder()).build();
         Request request = (new okhttp3.Request.Builder()).addHeader("Sec-WebSocket-Protocol", "MixinBot-Blaze-1").addHeader("Authorization", "Bearer " + token).url(Constant.Websocket_URL_GLOBAL).build();
         return client.newWebSocket(request, this);
     }
