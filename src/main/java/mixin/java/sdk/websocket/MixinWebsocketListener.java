@@ -68,7 +68,8 @@ public class MixinWebsocketListener extends WebSocketListener {
         JsonObject obj = new JsonParser().parse(msgIn).getAsJsonObject();
         try {
             mixinMessageProxy.receiveMsg(webSocket,obj,groupId);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             logger.error(e);
         }
     }
