@@ -68,8 +68,7 @@ public class MixinWebsocketListener extends WebSocketListener {
         JsonObject obj = new JsonParser().parse(msgIn).getAsJsonObject();
         try {
             mixinMessageProxy.receiveMsg(webSocket,obj,groupId);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             logger.error(e);
         }
     }
@@ -93,6 +92,7 @@ public class MixinWebsocketListener extends WebSocketListener {
     public void onFailure(WebSocket webSocket, Throwable t, Response response) {
         System.out.println("[onFailure !!!]");
         System.out.println("throwable: " + t);
+        t.printStackTrace();
         System.out.println("response: " + response);
         isConnect = false;
         reconnect();
