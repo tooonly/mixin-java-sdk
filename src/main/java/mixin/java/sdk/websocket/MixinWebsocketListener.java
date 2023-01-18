@@ -31,7 +31,7 @@ public class MixinWebsocketListener extends WebSocketListener {
 
     private int connectNum = 0;
 
-    private final static int MAX_NUM = 5;
+    private final static int MAX_NUM = 10;
 
     private final static int MILLIS = 5000;     // 重连间隔时间，毫秒
 
@@ -68,7 +68,8 @@ public class MixinWebsocketListener extends WebSocketListener {
         JsonObject obj = new JsonParser().parse(msgIn).getAsJsonObject();
         try {
             mixinMessageProxy.receiveMsg(webSocket,obj,groupId);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             logger.error(e);
         }
     }
