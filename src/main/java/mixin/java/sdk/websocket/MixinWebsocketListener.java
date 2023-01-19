@@ -118,26 +118,28 @@ public class MixinWebsocketListener extends WebSocketListener {
     /**
      * 连接
      */
-    public void connect() {
+    public WebSocket connect() {
         if (isConnect()) {
             logger.info("WebSocket 已经连接！");
-            return;
+            return null;
         }
-        this.connectToRemoteMixin(this.groupId);
+        return this.connectToRemoteMixin(this.groupId);
     }
 
     /**
      * 重连
      */
     public void reconnect() {
+        System.out.println("[reconnect!!!]");
         if (connectNum <= MAX_NUM) {
             try {
                 Thread.sleep(MILLIS);
                 this.connect();
                 connectNum++;
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+            this.connectNum = 0;
         } else {
             logger.info( "reconnect over " + MAX_NUM + ",please check url or network");
         }
