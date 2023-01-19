@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.io.EOFException;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.TimeUnit;
 
@@ -60,7 +61,6 @@ public class MixinWebsocketListener extends WebSocketListener {
         System.out.println("response header:" + response.headers());
         System.out.println("response:" + response);
         this.isConnect = response.code() == 101;
-
         // Request unread messages
         MessageService.sendListPendingMessages(webSocket);
     }
@@ -74,6 +74,7 @@ public class MixinWebsocketListener extends WebSocketListener {
     public void onMessage(WebSocket webSocket, ByteString bytes) {
         String msgIn = JsonUtil.bytesToJsonStr(bytes);
         JsonObject obj = new JsonParser().parse(msgIn).getAsJsonObject();
+        logger.info(obj);
         try {
             mixinMessageProxy.receiveMsg(webSocket,obj,groupId);
         } catch (Exception e) {
@@ -101,10 +102,10 @@ public class MixinWebsocketListener extends WebSocketListener {
     public void onFailure(WebSocket webSocket, Throwable t, Response response) {
         System.out.println("[onFailure !!!]");
         System.out.println("throwable: " + t);
-        t.printStackTrace();
         System.out.println("response: " + response);
-        //isConnect = false;
-        //reconnect();
+        isConnect = false;
+        webSocket.cancel();
+        this.reconnect();
     }
 
     /**
@@ -132,7 +133,7 @@ public class MixinWebsocketListener extends WebSocketListener {
         if (connectNum <= MAX_NUM) {
             try {
                 Thread.sleep(MILLIS);
-                connect();
+                this.connect();
                 connectNum++;
             } catch (InterruptedException e) {
                 e.printStackTrace();
