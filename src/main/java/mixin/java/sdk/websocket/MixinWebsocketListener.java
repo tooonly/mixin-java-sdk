@@ -35,7 +35,7 @@ public class MixinWebsocketListener extends WebSocketListener {
 
     private final static int MAX_NUM = 10;
 
-    private final static int MILLIS = 5000;     // 重连间隔时间，毫秒
+    private static int MILLIS = 5000;     // 重连间隔时间，毫秒
 
     private static OkHttpClient client;
 
@@ -131,6 +131,7 @@ public class MixinWebsocketListener extends WebSocketListener {
      */
     public void reconnect() {
         System.out.println("[reconnect!!!]");
+        System.out.println("[connectNum]:"+connectNum);
         if (connectNum <= MAX_NUM) {
             try {
                 Thread.sleep(MILLIS);
@@ -142,6 +143,7 @@ public class MixinWebsocketListener extends WebSocketListener {
             this.connectNum = 0;
         } else {
             logger.info( "reconnect over " + MAX_NUM + ",please check url or network");
+            MILLIS += 500;
         }
     }
 }
