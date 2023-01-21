@@ -9,7 +9,8 @@ import mixin.java.sdk.util.Action;
 import mixin.java.sdk.util.Category;
 import okhttp3.WebSocket;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -22,7 +23,7 @@ public class MixinMessageProxy implements MessageProxy {
     @Resource
     private MixinBot mixinBot;
 
-    private static Logger logger = Logger.getLogger(MixinMessageProxy.class);
+    private static Logger logger = LoggerFactory.getLogger(MixinMessageProxy.class);
     @Override
     public void receiveMsg(WebSocket webSocket,JsonObject obj, long groupId) throws UnsupportedEncodingException {
         Action action = Action.parseFrom(obj);
@@ -46,7 +47,7 @@ public class MixinMessageProxy implements MessageProxy {
                 }
                 String dataStr = new String(Base64.getDecoder().decode(dataContent), "UTF-8");
                 msg.setData(dataStr);
-                logger.info(msg);
+                logger.info(msg.toString());
                 switch (category){
                     case MESSAGE_RECALL:
                         /**
